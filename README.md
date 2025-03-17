@@ -3,6 +3,6 @@
 
 ## backend 
 ## frontend
-To run the server 
-command : npm run dev
+To run the Project 
+Run the command  `npm run dev` in both dir
 
