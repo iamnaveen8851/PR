@@ -10,15 +10,12 @@ const signUpData = (data) => {
 export const handleSignUp = (formState, navigate) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post(
-        "http://localhost:8080/users/signup",
+    
+
+      const res = await axiosInstance.post(
+        import.meta.env.VITE_SIGNUP,
         formState
       );
-
-      // const res = await axiosInstance.post(
-      //   import.meta.env.VITE_SIGNUP,
-      //   formState
-      // );
       if (res.status === 201) {
         dispatch(signUpData(res.data.message));
         navigate("/");
