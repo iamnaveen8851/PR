@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosInstance } from "../../utils/axiosInstance";
 
 const getLoginData = (data) => {
   return {
@@ -7,11 +7,11 @@ const getLoginData = (data) => {
   };
 };
 
-export const handleLogin = (formState,navigate ) => {
+export const handleLogin = (formState, navigate) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post(
-        `http://localhost:8080/users/login`,
+      const res = await axiosInstance.post(
+        import.meta.env.VITE_LOGIN,
         formState
       );
       console.log(res);
