@@ -1,4 +1,4 @@
-/* .loginContainer {
+.loginContainer {
   width: 28%;
   margin: auto;
   margin-top: 4%;
@@ -63,4 +63,4 @@ label {
 .btn:hover {
   cursor: pointer;
   background-color: rgb(15, 199, 27);
-} */
+}
