@@ -15,7 +15,7 @@ export const handleLogin = (formState, navigate) => {
         import.meta.env.VITE_LOGIN,
         formState
       );
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         dispatch(getLoginData(res.data.message));
         navigate("/");
