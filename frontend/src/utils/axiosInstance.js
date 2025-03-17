@@ -1,3 +1,4 @@
+import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_DEV_URL,
   withCredentials: true,
