@@ -12,7 +12,7 @@ export const handleLogin = (formState, navigate) => {
   return async (dispatch) => {
     try {
       const res = await axiosInstance.post(
-        import.meta.env.VITE_SIGNUP,
+        import.meta.env.VITE_LOGIN,
         formState
       );
       console.log(res);
