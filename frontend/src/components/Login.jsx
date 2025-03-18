@@ -24,7 +24,7 @@ const Login = () => {
         <form className={styles.loginForm} onSubmit={handleSubmit}>
           <p className={styles.heading}>Login</p>
           <p className={styles.para}>
-            Please fill in this form to create an account.
+            Please fill in this form to login your account.
           </p>
           <label>Email</label>
           <input
@@ -57,6 +57,12 @@ const Login = () => {
             }
             required
           />
+
+          <label>
+            <input type="checkbox" name="rememberMe" id="" />
+            Remember me
+          </label>
+
           <button className={styles.btn} type="submit">
             Login
           </button>

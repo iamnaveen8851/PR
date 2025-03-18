@@ -7,6 +7,7 @@
 
 .heading {
   text-align: center;
+  text-decoration: underline;
   font-size: 28px;
   font-weight: 550;
   margin-top: 5%;
@@ -17,8 +18,8 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 .loginForm {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: rgb(212, 163, 107);
+  box-shadow: rgba(125, 40, 40, 0.35) 0px 5px 15px;
+  background-color: rgb(255, 254, 252);
   font-family: Arial, Helvetica, sans-serif;
 
   border-radius: 8px;
@@ -31,8 +32,8 @@
 }
 
 label {
-  font-size: 17px;
-  font-weight: 540;
+  font-size: 15px;
+  font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
 }
 .inputBox {
@@ -48,9 +49,9 @@ label {
 }
 
 .btn {
-  width: 20%;
-  padding: 10px;
-  background-color: rgb(10, 164, 57);
+  width: 28%;
+  padding: 12px;
+  background-color: rgb(139, 85, 209);
   color: rgb(250, 248, 248);
   border: none;
   font-weight: bold;
@@ -62,5 +63,17 @@ label {
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(15, 199, 27);
+  background-color: rgb(12, 197, 58);
+}
+
+@media screen and (max-width: 950px) {
+  .loginContainer {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .loginContainer {
+    width: 80%;
+  }
 }
