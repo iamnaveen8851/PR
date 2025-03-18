@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/login.module.css";
 import { useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleLogin } from "../redux/actions/loginAction";
+import Loader from "./Loader";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,61 +13,79 @@ const Login = () => {
     password: "",
   });
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.loginReducer);
 
   const handleSubmit = async (e) => {
+    console.log("Login form submitted:", formState);
     e.preventDefault();
     dispatch(handleLogin(formState, navigate));
   };
 
+  console.log("laoding:",loading)
+
+  if (loading) {
+    <Loader />;
+  }
   return (
     <>
-      <div className={styles.loginContainer}>
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <p className={styles.heading}>Login</p>
-          <p className={styles.para}>
-            Please fill in this form to login your account.
-          </p>
-          <label>Email</label>
-          <input
-            className={styles.inputBox}
-            type="email"
-            name="email"
-            value={formState.email}
-            placeholder="Enter your email address"
-            onChange={(e) =>
-              setFormState({
-                ...formState,
-                email: e.target.value,
-              })
-            }
-            required
-          />
+      <div className={styles.parentContainer}>
+        {/* left div for image */}
+        <div className={styles.leftChild}>
+          <img className={styles.imageStyling} src="\authImage.avif" alt="" />
+        </div>
 
-          <label>Password</label>
-          <input
-            className={styles.inputBox}
-            type="password"
-            name="password"
-            value={formState.password}
-            placeholder="Enter your password"
-            onChange={(e) =>
-              setFormState({
-                ...formState,
-                password: e.target.value,
-              })
-            }
-            required
-          />
+        {/* right div for form */}
+        <div className={styles.rightChild}>
+          <div className={styles.formContainer}>
+            <h3 className={styles.heading}>Login</h3>
+            <br />
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <input
+                className={styles.inputBoxes}
+                type="text"
+                placeholder="Email"
+                value={formState.email}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    email: e.target.value,
+                  })
+                }
+                required
+              />
 
-          <label>
-            <input type="checkbox" name="rememberMe" id="" />
-            Remember me
-          </label>
+              <input
+                className={styles.inputBoxes}
+                type="password"
+                placeholder="Password"
+                value={formState.password}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    password: e.target.value,
+                  })
+                }
+                required
+              />
 
-          <button className={styles.btn} type="submit">
-            Login
-          </button>
-        </form>
+              <button className={styles.submitBtn} type="submit">
+                Sign In
+              </button>
+
+              <div className="m-auto">
+                <p>
+                  Dont have account?{" "}
+                  <button
+                    onClick={() => navigate("/users/signup")}
+                    className={styles.linkBtn}
+                  >
+                    Register
+                  </button>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -1,87 +1,45 @@
-.signUpContainer {
-  width: 28%;
-  margin: auto;
-  margin-top: 4%;
-  padding: 20px;
-  /* border: 2px solid red; */
+.parentContainer {
+  @apply 
+  /* border-4 border-green-500  */
+  flex flex-col h-max  md:flex-row;
+}
+
+.leftChild {
+  @apply
+   /* border-2 border-blue-500  */
+  w-[100%]   h-full md:w-[100vw] lg:w-[70%];
+}
+
+.imageStyling {
+  @apply w-full lg:w-full h-full md:h-[100vh] lg:h-[695px] md:w-fit object-cover;
+}
+
+.rightChild {
+  @apply w-full md:w-[60%] lg:w-[45%] h-full 
+   /* border-4 border-red-700 */
+   ;
+}
+
+.formContainer {
+  @apply border-r-8 border-r-orange-300 border-b-8 border-b-orange-300 w-[90%] md:w-[80%] lg:w-[70%] h-[90vh] md:h-[90vh] lg:h-fit m-auto  p-[25px] pt-[40px] rounded-2xl shadow-2xl my-20;
 }
 
 .heading {
-  text-align: center;
-  text-decoration: underline;
-  font-size: 28px;
-  font-weight: 550;
-  margin-top: 5%;
-  font-family: Arial, Helvetica, sans-serif;
+  @apply text-orange-500 text-3xl text-center font-semibold font-sans;
 }
 
-.para {
-  font-family: Arial, Helvetica, sans-serif;
-}
-.signUpForm {
-  box-shadow: rgba(118, 40, 40, 0.35) 0px 5px 15px;
-  background-color: rgb(253, 252, 251);
-  
-  font-family: Arial, Helvetica, sans-serif;
-  /* border: 1px solid black; */
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  padding: 20px;
-  justify-content: space-around;
-  align-items: center;
-  gap: 10px;
+.form {
+  @apply w-[100%]  m-auto  p-[28px] grid grid-cols-1 justify-around gap-8;
 }
 
-label {
-  font-size: 17px;
-  font-weight: 540;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.inputBox {
-  padding: 12px;
-  border-radius: 5px;
-  background: #f1f1f1;
-  font-family: Arial, Helvetica, sans-serif;
+.inputBoxes {
+  @apply border-2 border-gray-400 p-[10px] md:p-[10px] lg:p-[10px] w-[100%] md:w-[100%] lg:w-[100%] rounded-lg shadow-lg;
 }
 
-.inputBox:focus {
-  background-color: #ddd;
-  outline: none;
+.submitBtn {
+  @apply border-2 bg-orange-500 text-[18px] hover:bg-orange-700 text-white w-[60%] md:w-[70%] lg:w-[80%] font-normal p-[8px] rounded-xl m-auto;
 }
 
-.btn {
-  width: 28%;
-  padding: 12px;
-  background-color: rgb(139, 85, 209);
-  color: rgb(250, 248, 248);
-  border: none;
-  font-weight: bold;
-  font-size: 15px;
-  border-radius: 5px;
-
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn:hover {
-  cursor: pointer;
-  background-color: rgb(39, 133, 45);
-}
-
-
-
-@media screen and (max-width: 950px) {
-  .signUpContainer {
-    width: 50%;
-    
-  }
-}
-
-
-
-@media screen and (max-width: 520px) {
-  .signUpContainer {
-    width: 80%;
-    
-  }
+.linkBtn {
+  @apply text-[14px] md:text-[16px] lg:text-[16px]  text-orange-500 hover:text-[#250ef0];
 }

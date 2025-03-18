@@ -3,7 +3,8 @@ import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
   const { isSignedUp } = useSelector((state) => state.signUpReducer);
-  const { isLoggedIn } = useSelector((state) => state.loginReducer);
+  const { isLoggedIn, message } = useSelector((state) => state.loginReducer);
+  console.log("isLogged in:", isLoggedIn, message);
   if (isLoggedIn) {
     return children;
   } else if (isSignedUp) {
