@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/signup.module.css";
 import { handleSignUp } from "../redux/actions/signUpAction";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.signUpReducer);
+  const { loading, isSignedUp, message, user } = useSelector(
+    (state) => state.signUpReducer
+  );
   const [formState, setFormState] = useState({
     username: "",
     email: "",
     password: "",
   });
-
-
-  
 
   const handleSubmit = async (e) => {
     console.log("Sign up form submitted:", formState);
@@ -24,6 +24,11 @@ const SignUp = () => {
     dispatch(handleSignUp(formState, navigate));
   };
 
+  useEffect(() => {
+    if (!isSignedUp && message && !loading) {
+      toast.error(`${message}`);
+    }
+  }, [isSignedUp, message, loading]);
   if (loading) {
     return <Loader />;
   }

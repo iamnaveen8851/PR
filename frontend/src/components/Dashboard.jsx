@@ -3,11 +3,20 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.loginReducer);
+  const { user: loggedInUser, isLoggedIn } = useSelector(
+    (state) => state.loginReducer
+  );
+  const { user: signedUpUser, isSignedUp } = useSelector(
+    (state) => state.signUpReducer
+  );
 
   useEffect(() => {
-    toast.success(`Welcome ${user}!`);
-  }, []);
+    if (isLoggedIn) {
+      toast.success(`Welcome ${loggedInUser}!`);
+    } else if (isSignedUp) {
+      toast.success(`Welcome ${signedUpUser}!`);
+    }
+  }, [isLoggedIn, isSignedUp]);
   return <div>Dashboard </div>;
 };
 

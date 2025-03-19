@@ -16,11 +16,17 @@ export const handleSignUp = (formState, navigate) => {
         formState
       );
       if (res.status === 201) {
-        dispatch(signUpData(res.data.message));
-        navigate("/");
+        
+        setTimeout(() => {
+          dispatch(signUpData(res.data));
+          navigate("/");
+        }, 1000);
       }
     } catch (error) {
-      dispatch({ type: "SIGN_UP_ERROR", payload: error.message });
+      const errorMessage =
+        error.response?.data?.message || "These Credentials Exists";
+      dispatch({ type: "SIGN_UP_ERROR", payload: errorMessage });
+
       console.error(error);
     }
   };

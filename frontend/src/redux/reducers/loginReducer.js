@@ -1,6 +1,6 @@
 const initialState = {
   isLoggedIn: false,
-  message: null,
+  message: "",
   loading: false,
   user: null,
 };
@@ -29,6 +29,7 @@ export const loginReducer = (state = initialState, action) => {
         loading: false,
         isLoggedIn: false,
         message: action.payload,
+        
       };
 
     default:

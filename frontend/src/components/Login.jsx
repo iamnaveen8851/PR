@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogin } from "../redux/actions/loginAction";
 import Loader from "./Loader";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,19 +14,28 @@ const Login = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.loginReducer);
-
+  const { loading, message, isLoggedIn } = useSelector(
+    (state) => state.loginReducer
+  );
+  // const { message, user, isLoggedIn } = useSelector(
+  //   (state) => state.loginReducer
+  // );
   const handleSubmit = async (e) => {
-    console.log("Login form submitted:", formState);
     e.preventDefault();
     dispatch(handleLogin(formState, navigate));
   };
 
-  console.log("laoding:",loading)
+  // To pass a message
+  useEffect(() => {
+    if (!isLoggedIn && message && !loading) {
+      toast.error(`${message}`);
+    }
+  }, [isLoggedIn, message, loading]);
 
   if (loading) {
-    <Loader />;
+    return <Loader />;
   }
+
   return (
     <>
       <div className={styles.parentContainer}>

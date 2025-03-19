@@ -10,21 +10,27 @@ const getLoginData = (data) => {
 export const handleLogin = (formState, navigate) => {
   return async (dispatch) => {
     dispatch({ type: "LOGIN_REQUEST" });
+
     try {
       const res = await axiosInstance.post(
         import.meta.env.VITE_LOGIN,
         formState
       );
-      // console.log(res);
-      if (res.status === 200) {
-        // console.log(res, "-----d");
 
-        dispatch(getLoginData(res.data));
-        navigate("/");
+      if (res.status === 200) {
+        // To add a delay before the dashboard is visible to show the loading
+        setTimeout(() => {
+          dispatch(getLoginData(res.data));
+          navigate("/");
+        }, 1000);
       }
     } catch (error) {
-      dispatch({ type: "LOGIN_FAILURE", payload: error.message });
-      console.log(error.message);
+      // Extract error message safely
+      const errorMessage =
+        error.response?.data?.message || "Login failed. Please try again.";
+
+      console.log(errorMessage, "............error");
+      dispatch({ type: "LOGIN_FAILURE", payload: errorMessage });
     }
   };
 };

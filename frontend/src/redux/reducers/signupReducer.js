@@ -1,7 +1,8 @@
 const initialState = {
   loading: false,
   isSignedUp: false,
-  message: null,
+  message: "",
+  user: null,
 };
 
 export const signUpReducer = (state = initialState, action) => {
@@ -18,7 +19,8 @@ export const signUpReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         isSignedUp: true,
-        message: action.payload,
+        message: action.payload.message,
+        user: action.payload.user.username,
       };
 
     case "SIGN_UP_ERROR":
