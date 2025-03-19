@@ -1,6 +1,8 @@
 const userModel = require("../models/userModel");
-const jwt = require("jsonwebtoken");
+
 const bcrypt = require("bcrypt");
+const generateToken = require("../lib/jwtToken");
+const setCookies = require("../lib/setCookie");
 require("dotenv").config();
 
 const signup = async (req, res) => {
@@ -28,21 +30,20 @@ const signup = async (req, res) => {
 
       await newUser.save();
 
-      //   assign token to the user
-
-      var token = jwt.sign(
-        { userId: newUser.userId, username: newUser.username },
-        process.env.JWT_SECRET,
-        { expiresIn: "2d" }
+      //   assign token to the user by calling the function
+      const token = await generateToken(
+        {
+          userId: newUser.userId,
+          username: newUser.username,
+        },
+        process.env.JWT_SECRET
       );
 
+   
+      //setting cookies
+      await setCookies(token, res);
+
       res
-        .cookie("jwtToken", token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "development",
-          sameSite: "Strict",
-          maxAge: 2 * 60 * 60 * 1000,
-        })
         .status(201)
         .json({ message: "User created successfully", user: newUser });
     });

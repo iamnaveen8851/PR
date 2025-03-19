@@ -22,14 +22,17 @@ const Login = () => {
     <>
       <div className={styles.loginContainer}>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <h3 style={{ textAlign: "center" }}>Login</h3>
-
-          <label>email</label>
+          <p className={styles.heading}>Login</p>
+          <p className={styles.para}>
+            Please fill in this form to login your account.
+          </p>
+          <label>Email</label>
           <input
             className={styles.inputBox}
             type="email"
             name="email"
             value={formState.email}
+            placeholder="Enter your email address"
             onChange={(e) =>
               setFormState({
                 ...formState,
@@ -39,12 +42,13 @@ const Login = () => {
             required
           />
 
-          <label>password</label>
+          <label>Password</label>
           <input
             className={styles.inputBox}
             type="password"
             name="password"
             value={formState.password}
+            placeholder="Enter your password"
             onChange={(e) =>
               setFormState({
                 ...formState,
@@ -53,6 +57,12 @@ const Login = () => {
             }
             required
           />
+
+          <label>
+            <input type="checkbox" name="rememberMe" id="" />
+            Remember me
+          </label>
+
           <button className={styles.btn} type="submit">
             Login
           </button>

@@ -13,7 +13,6 @@ const SignUp = () => {
     password: "",
   });
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(handleSignUp(formState, navigate));
@@ -22,13 +21,18 @@ const SignUp = () => {
     <>
       <div className={styles.signUpContainer}>
         <form className={styles.signUpForm} onSubmit={handleSubmit}>
-          <h3 style={{ textAlign: "center" }}>SIGN UP</h3>
-          <label>username</label>
+          <p className={styles.heading}>SIGN UP</p>
+
+          <p className={styles.para}>
+            Please fill in this form to create an account.
+          </p>
+          <label>Username</label>
           <input
             className={styles.inputBox}
             type="text"
             name="username"
             value={formState.username}
+            placeholder="Enter Username"
             onChange={(e) =>
               setFormState({
                 ...formState,
@@ -38,12 +42,13 @@ const SignUp = () => {
             required
           />
 
-          <label>email</label>
+          <label>Email</label>
           <input
             className={styles.inputBox}
             type="email"
             name="email"
             value={formState.email}
+            placeholder="Enter Email"
             onChange={(e) =>
               setFormState({
                 ...formState,
@@ -53,12 +58,13 @@ const SignUp = () => {
             required
           />
 
-          <label>password</label>
+          <label>Password</label>
           <input
             className={styles.inputBox}
             type="password"
             name="password"
             value={formState.password}
+            placeholder="Enter Password"
             onChange={(e) =>
               setFormState({
                 ...formState,
